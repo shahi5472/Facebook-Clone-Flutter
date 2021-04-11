@@ -1,20 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_facebook_clone/screen/login_screen.dart';
+import 'package:flutter_facebook_clone/utility/size_config.dart';
 
 void main() {
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Facebook - log in or sign up',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: LoginScreen(),
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        return OrientationBuilder(
+          builder: (context, orientation) {
+            SizeConfig().init(constraints, orientation);
+            return MaterialApp(
+              debugShowCheckedModeBanner: false,
+              title: 'Learning Platform Application',
+              home: LoginScreen(),
+            );
+          },
+        );
+      },
     );
   }
 }
